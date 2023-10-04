@@ -2,7 +2,7 @@
 <html lang="en-GB">
 	<head>
 		<meta charset="utf-8" />
-		<title>JS8-web {{title}}</title>
+		<title>JS8-web v{{pkg.version}}</title>
 		<meta
 			name="viewport"
 			content="width=device-width, initial-scale=1, shrink-to-fit=no"
@@ -15,15 +15,15 @@
 		<header role="banner">
 			<div class="container">
 				<div class="row align-items-center">
-					<div class="col">
+					<div class="col-6 col-md-4">
 						<h1>JS8-web</h1>
 					</div>
-					<div class="col">
+					<div class="col-6 col-md-2">
 						<button id="ptt-status" class="btn btn-success">
 							PTT
 						</button>
 					</div>
-					<div class="col">
+					<div class="col-12 col-md-6">
 						<div hx-get="/api/station/meta" hx-trigger="load"></div>
 					</div>
 				</div>
@@ -204,7 +204,9 @@
 			<div class="container">
 				<div class="row">
 					<div class="col">
-						<p class="text-center mt-3">JS8-web by Rik M7GMT</p>
+						<p class="text-center mt-3">
+							JS8-web v{{pkg.version}} by Rik M7GMT
+						</p>
 					</div>
 				</div>
 			</div>
