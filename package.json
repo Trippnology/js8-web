@@ -1,6 +1,6 @@
 {
 	"name": "@trippnology/js8-web",
-	"version": "0.0.1",
+	"version": "0.1.0",
 	"description": "Can you have a JS8 QSO via a browser?",
 	"main": "app/index.js",
 	"bin": {
