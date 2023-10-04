@@ -1,13 +1,15 @@
 {
 	"name": "@trippnology/js8-web",
-	"version": "0.1.0",
+	"version": "0.2.0",
 	"description": "Can you have a JS8 QSO via a browser?",
 	"main": "app/index.js",
 	"bin": {
 		"js8-web": "./app/index.js"
 	},
 	"scripts": {
-		"start": "node ./"
+		"start": "node ./",
+		"make-exe": "cross-var pkg -C GZip --out-path dist/$npm_package_version ./",
+		"version": "npm run make-exe"
 	},
 	"keywords": [
 		"js8"
@@ -31,16 +33,24 @@
 	},
 	"devDependencies": {
 		"browserify-shim": "3.8.16",
+		"cross-var": "1.1.0",
 		"grunt": "1.6.1",
 		"grunt-browserify": "6.0.0",
 		"grunt-contrib-compass": "1.1.1",
 		"grunt-contrib-copy": "1.0.0",
 		"grunt-contrib-cssmin": "5.0.0",
 		"grunt-contrib-uglify": "5.2.2",
-		"grunt-contrib-watch": "1.1.0"
+		"grunt-contrib-watch": "1.1.0",
+		"pkg": "5.8.1"
 	},
 	"browserify-shim": {
 		"jquery": "global:jQuery",
 		"bootbox": "global:bootbox"
+	},
+	"pkg": {
+		"assets": [
+			"app/public/**/*",
+			"app/templates/**/*"
+		]
 	}
 }
