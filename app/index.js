@@ -7,6 +7,8 @@ const Inert = require('@hapi/inert');
 const Vision = require('@hapi/vision');
 const Nes = require('@hapi/nes');
 
+const pkg = require('../package.json');
+
 const internals = {
 	templatePath: '',
 	thisYear: new Date().getFullYear(),
@@ -70,14 +72,7 @@ const init = async () => {
 		method: 'GET',
 		path: '/',
 		handler: (request, h) => {
-			const relativePath = Path.relative(
-				`${__dirname}/../..`,
-				`${__dirname}/templates/${internals.templatePath}`,
-			);
-
-			return h.view('index', {
-				title: `Running ${relativePath} | hapi ${request.server.version}`,
-			});
+			return h.view('index', {});
 		},
 	});
 
@@ -195,6 +190,7 @@ const init = async () => {
 		engines: { html: Handlebars },
 		relativeTo: __dirname,
 		path: `templates/${internals.templatePath}`,
+		context: { pkg },
 	});
 	await server.start();
 	console.log('Server running on %s', server.info.uri);
