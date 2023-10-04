@@ -9,7 +9,7 @@
 	"scripts": {
 		"start": "node ./",
 		"make-exe": "cross-var pkg -C GZip --out-path dist/$npm_package_version ./",
-		"version": "make-exe"
+		"version": "npm run make-exe"
 	},
 	"keywords": [
 		"js8"
