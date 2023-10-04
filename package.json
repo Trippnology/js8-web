@@ -1,0 +1,46 @@
+{
+	"name": "@trippnology/js8-web",
+	"version": "0.0.1",
+	"description": "Can you have a JS8 QSO via a browser?",
+	"main": "app/index.js",
+	"bin": {
+		"js8-web": "./app/index.js"
+	},
+	"scripts": {
+		"start": "node ./"
+	},
+	"keywords": [
+		"js8"
+	],
+	"author": "Rik M7GMT",
+	"license": "UNLICENSED",
+	"dependencies": {
+		"@hapi/hapi": "21.3.2",
+		"@hapi/hoek": "11.0.2",
+		"@hapi/inert": "7.1.0",
+		"@hapi/nes": "13.0.1",
+		"@hapi/validate": "2.0.1",
+		"@hapi/vision": "7.0.3",
+		"@trippnology/lib-js8call": "1.0.3",
+		"bootbox": "6.0.0",
+		"bootstrap": "4.6.2",
+		"handlebars": "4.7.8",
+		"htmx.org": "1.9.6",
+		"jquery": "3.7.1",
+		"lodash": "4.17.21"
+	},
+	"devDependencies": {
+		"browserify-shim": "3.8.16",
+		"grunt": "1.6.1",
+		"grunt-browserify": "6.0.0",
+		"grunt-contrib-compass": "1.1.1",
+		"grunt-contrib-copy": "1.0.0",
+		"grunt-contrib-cssmin": "5.0.0",
+		"grunt-contrib-uglify": "5.2.2",
+		"grunt-contrib-watch": "1.1.0"
+	},
+	"browserify-shim": {
+		"jquery": "global:jQuery",
+		"bootbox": "global:bootbox"
+	}
+}

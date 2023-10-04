@@ -1,0 +1,220 @@
+<!DOCTYPE html>
+<html lang="en-GB">
+	<head>
+		<meta charset="utf-8" />
+		<title>JS8-web {{title}}</title>
+		<meta
+			name="viewport"
+			content="width=device-width, initial-scale=1, shrink-to-fit=no"
+		/>
+		<link rel="stylesheet" href="css/vendor/bootstrap.min.css" />
+		<link rel="stylesheet" href="css/style.css" />
+	</head>
+
+	<body>
+		<header role="banner">
+			<div class="container">
+				<div class="row align-items-center">
+					<div class="col">
+						<h1>JS8-web</h1>
+					</div>
+					<div class="col">
+						<button id="ptt-status" class="btn btn-success">
+							PTT
+						</button>
+					</div>
+					<div class="col">
+						<div hx-get="/api/station/meta" hx-trigger="load"></div>
+					</div>
+				</div>
+			</div>
+		</header>
+
+		<main role="main">
+			<div class="container">
+				<div class="row">
+					<div class="col">
+						<div class="accordion" id="js8-tabs">
+							<div class="card">
+								<div class="card-header" id="header-activity">
+									<h2 class="mb-0">
+										<button
+											class="btn btn-link btn-block text-left"
+											type="button"
+											data-toggle="collapse"
+											data-target="#tab-activity"
+											aria-expanded="true"
+											aria-controls="tab-activity"
+										>
+											Activity
+										</button>
+									</h2>
+								</div>
+
+								<div
+									id="tab-activity"
+									class="collapse"
+									aria-labelledby="header-activity"
+									data-parent="#js8-tabs"
+								>
+									<div class="card-body">
+										<table
+											id="band-activity"
+											class="table table-sm"
+										>
+											<thead>
+												<tr>
+													<th>Offset</th>
+													<th>Time</th>
+													<th>SNR</th>
+													<th>Text</th>
+												</tr>
+											</thead>
+											<tbody
+												hx-get="/api/rx/band-activity"
+												hx-trigger="load"
+											></tbody>
+										</table>
+									</div>
+								</div>
+							</div>
+							<div class="card">
+								<div class="card-header" id="header-qso">
+									<h2 class="mb-0">
+										<button
+											class="btn btn-link btn-block text-left collapsed"
+											type="button"
+											data-toggle="collapse"
+											data-target="#tab-qso"
+											aria-expanded="false"
+											aria-controls="tab-qso"
+										>
+											QSO
+										</button>
+									</h2>
+								</div>
+								<div
+									id="tab-qso"
+									class="collapse"
+									aria-labelledby="header-qso"
+									data-parent="#js8-tabs"
+								>
+									<div class="card-body">
+										<pre
+											id="qso-text"
+											hx-get="/api/rx/qso"
+											hx-trigger="load"
+										></pre>
+										<form
+											id="qso-form"
+											hx-post="/api/tx/send-message"
+											hx-target="#qso-text"
+											hx-on::after-request="if(event.detail.successful) this.reset()"
+										>
+											<div class="form-group">
+												<label for="qso_to">To:</label>
+												<input
+													name="qso_to"
+													id="qso_to"
+													class="form-control"
+												/>
+											</div>
+											<div class="form-group">
+												<label for="qso_text"
+													>Message:</label
+												>
+												<input
+													name="qso_text"
+													id="qso_text"
+													class="form-control"
+												/>
+											</div>
+											<div class="btn-group">
+												<button
+													type="submit"
+													class="btn btn-success"
+												>
+													Send</button
+												><button
+													type="reset"
+													class="btn btn-danger"
+												>
+													Reset
+												</button>
+											</div>
+										</form>
+									</div>
+								</div>
+							</div>
+							<div class="card">
+								<div class="card-header" id="header-callsigns">
+									<h2 class="mb-0">
+										<button
+											class="btn btn-link btn-block text-left collapsed"
+											type="button"
+											data-toggle="collapse"
+											data-target="#tab-callsigns"
+											aria-expanded="false"
+											aria-controls="tab-callsigns"
+										>
+											Callsigns
+										</button>
+									</h2>
+								</div>
+								<div
+									id="tab-callsigns"
+									class="collapse"
+									aria-labelledby="header-callsigns"
+									data-parent="#js8-tabs"
+								>
+									<div class="card-body">
+										<table
+											id="call-activity"
+											class="table table-sm"
+										>
+											<thead>
+												<tr>
+													<th>Call</th>
+													<th>Grid</th>
+													<th>SNR</th>
+													<th>UTC</th>
+												</tr>
+											</thead>
+											<tbody
+												hx-get="/api/rx/call-activity"
+												hx-trigger="load"
+												hx-on::after-request="if(event.detail.successful) callsignEvents()"
+											></tbody>
+										</table>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+				<div class="row">
+					<div class="col">
+						<div id="debug"></div>
+					</div>
+				</div>
+			</div>
+		</main>
+
+		<footer role="contentinfo">
+			<div class="container">
+				<div class="row">
+					<div class="col">
+						<p class="text-center mt-3">JS8-web by Rik M7GMT</p>
+					</div>
+				</div>
+			</div>
+		</footer>
+
+		<script src="js/vendor/jquery.min.js"></script>
+		<script src="js/vendor/bootstrap.bundle.min.js"></script>
+		<script src="js/vendor/bootbox.min.js"></script>
+		<script src="js/vendor/htmx.min.js"></script>
+		<script src="js/vendor/htmx.ws.js"></script>
+		<script src="js/app-bundle.js"></script>
+	</body>
+</html>
