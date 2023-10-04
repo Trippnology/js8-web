@@ -7,6 +7,12 @@ It turns out, yes you can - as long as you are prepared to accept a few shortcom
 
 ## Installation
 
+### Binaries
+
+Download the binary for your platform from the [Releases tab](https://github.com/Trippnology/js8-web/releases/). You do not need NodeJS installed to use these, but they are quite large because they include the Node runtime executable.
+
+### Running from source
+
 You first need [NodeJS](https://nodejs.org/en/download) >v12 installed (available for most platforms).
 
 ```
@@ -15,7 +21,7 @@ cd js8-web
 npm install
 ```
 
-In the future, js8-web could be published to npm to enable install with just `npm i -g js8-web`, and/or packaged into a binary so users don't need NodeJS installed at all.
+In the future, js8-web could be published to npm to enable install with just `npm i -g js8-web`.
 
 ## Usage
 
